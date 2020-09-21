@@ -46,7 +46,7 @@ class ContactController extends Controller
      */
     private function sendContactMail(array $contact) 
     {
-        Mail::to('tsprates@gmail.com')
+        Mail::to('tsprates@hotmail.com')
             ->send(new ContactMail($contact));
     }
 }

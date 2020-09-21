@@ -11,6 +11,10 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    
+    /**
+     * @var array
+     */
     private $data;
 
     /**
