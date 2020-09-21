@@ -27,7 +27,7 @@ class ContactController extends Controller
             'ip'      => $request->ip()
         ];
         
-        // $this->sendContactMail($contact);
+        $this->sendContactMail($contact);
 
         // saves the uploaded file (attachment)
         $contact['attachment'] = basename($request->attachment->store('public/attachments'));
@@ -46,7 +46,7 @@ class ContactController extends Controller
      */
     private function sendContactMail(array $contact) 
     {
-        Mail::to('tsprates@hotmail.com')
+        Mail::to($contact['email'])
             ->send(new ContactMail($contact));
     }
 }
