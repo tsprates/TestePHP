@@ -84,7 +84,7 @@
             });
             
             $.validator.addMethod('extension', function(value, element, param) {
-                return this.optional(element) || (/^(pdf|docx?|odt|txt)$/i).test(value);
+                return this.optional(element) || !(/^(pdf|docx?|odt|txt)$/i).test(value);
             });
 
             $('#phone').mask('(00) 00000-0000');
