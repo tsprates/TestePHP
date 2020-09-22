@@ -52,7 +52,7 @@
                     </div>
     
                     <div class="form-group mb-3 row">
-                        <label for="phone">Mensagem:</label>
+                        <label for="message">Mensagem:</label>
                         <textarea class="form-control" id="message" name="message" rows="4">{{ old('message') }}</textarea>
                     </div>
                     
