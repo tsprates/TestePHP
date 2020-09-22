@@ -30,7 +30,7 @@ class ContactController extends Controller
         $this->sendContactMail($contact);
 
         // saves the uploaded file (attachment)
-        $contact['attachment'] = basename($request->attachment->store('public/attachments'));
+        $contact['attachment'] = 'storage/attachments/' . basename($request->attachment->store('public/attachments'));
 
         Contact::create($contact);
 
@@ -40,7 +40,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Sends the saved contact mail.
+     * Sends the mail about the saved contact.
      * 
      * @param array $contact
      */
