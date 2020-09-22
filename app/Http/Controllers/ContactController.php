@@ -10,6 +10,11 @@ use App\Http\Requests\ContactStoreRequest;
 
 class ContactController extends Controller
 {
+    public function index() 
+    { 
+        return view('form-contact');
+    }
+    
     /**
      * Stores the contact data.
      *
