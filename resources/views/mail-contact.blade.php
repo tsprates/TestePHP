@@ -17,4 +17,8 @@
     <strong>IP</strong>: {{ $ip }}
 </div>
 
+@component('mail::button', ['url' => asset($attachment)])
+Anexo
+@endcomponent
+
 @endcomponent

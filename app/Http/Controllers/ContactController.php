@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactStoreRequest;
 
@@ -29,13 +30,11 @@ class ContactController extends Controller
             'email'   => $data['email'],
             'phone'   => $data['phone'],
             'message' => $data['message'],
-            'ip'      => $request->ip()
+            'ip'      => $request->ip(),
+            'attachment' => 'storage/attachments/' . basename($request->attachment->store('public/attachments')),
         ];
         
         $this->sendContactMail($contact);
-
-        // saves the uploaded file (attachment)
-        $contact['attachment'] = 'storage/attachments/' . basename($request->attachment->store('public/attachments'));
 
         Contact::create($contact);
 
@@ -51,7 +50,12 @@ class ContactController extends Controller
      */
     private function sendContactMail(array $contact) 
     {
-        Mail::to($contact['email'])
-            ->send(new ContactMail($contact));
+        try {
+            Mail::to($contact['email'])
+                ->send(new ContactMail($contact))
+                ->subject('Teste PHP');
+        } catch (Exception $e) {
+            Log::error(sprintf("Erro ao enviar email para %s.", $contact['email']));
+        }
     }
 }
