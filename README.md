@@ -21,6 +21,12 @@ Uma versão funcional se encontra em: [Teste PHP](http://tsprates.com)
 composer install
 ```
 
+* Criação do __APP_KEY__ necessário para o Laravel:
+
+```
+php artisan key:generate
+```
+
 * Para criação das __tabelas do banco de dados__:
 
 ```
