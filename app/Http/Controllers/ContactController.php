@@ -52,9 +52,8 @@ class ContactController extends Controller
     {
         try {
             Mail::to($contact['email'])
-                ->send(new ContactMail($contact))
-                ->subject('Teste PHP');
-        } catch (Exception $e) {
+                ->send(new ContactMail($contact));
+        } catch (Error $e) {
             Log::error(sprintf("Erro ao enviar email para %s.", $contact['email']));
         }
     }
