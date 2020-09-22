@@ -7,14 +7,15 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        
         <title>Teste PHP</title>
     </head>
     <body>
     <div class="container">
         <div class="col-md-12">
-            <div class="py-5 text-center">
-                <h2>Teste PHP</h2>
+            <div class="pt-2 pb-5 text-center">
+                <h2>Teste <i class="fab fa-php fa-2x"></i></h2>
                 <p>Resolução do teste proposto.</p>
             </div>
             
@@ -34,35 +35,37 @@
             
             <form id="contact" method="post" action="/store" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group mb-3 row">
-                    <label for="name">Nome:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="" value="{{ old('name') }}">
-                </div>
-                
-                <div class="form-group mb-3 row">
-                    <label for="email">Email:</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="" value="{{ old('email') }}">
-                </div>
-                
-                <div class="form-group mb-3 row">
-                    <label for="phone">Telefone:</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="{{ old('phone') }}">
-                </div>
-
-                <div class="form-group mb-3 row">
-                    <label for="phone">Mensagem:</label>
-                    <textarea class="form-control" id="message" name="message" rows="4">{{ old('message') }}</textarea>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="attachment">Arquivo anexo:</label>
-                    <input type="file" class="form-control-file" id="attachment" name="attachment">
-                </div>
-
-                <div class="form-group mb-3 row float-right">
-                    <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
-                </div>
-            </form>
+                <fieldset>
+                    <div class="form-group mb-3 row">
+                        <label for="name">Nome:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="" value="{{ old('name') }}">
+                    </div>
+                    
+                    <div class="form-group mb-3 row">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="" value="{{ old('email') }}">
+                    </div>
+                    
+                    <div class="form-group mb-3 row">
+                        <label for="phone">Telefone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="{{ old('phone') }}">
+                    </div>
+    
+                    <div class="form-group mb-3 row">
+                        <label for="phone">Mensagem:</label>
+                        <textarea class="form-control" id="message" name="message" rows="4">{{ old('message') }}</textarea>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="attachment">Arquivo anexo:</label>
+                        <input type="file" class="form-control-file btn btn" id="attachment" name="attachment" />
+                    </div>
+    
+                    <div class="form-group py-3 row">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-check"></i> Cadastrar</button>
+                    </div>
+                </form>
+            </fieldset>
         </div>
     </div>
 
@@ -126,12 +129,14 @@
                 },
                 errorElement: "em",
                 errorPlacement: function ( error, element ) {
-                    error.addClass("text-danger");
+                    error.addClass("text-danger").prepend('<i class="fas fa-exclamation-circle"></i> ');
+                    
                     if (element.prop( "type" ) === "file") {
                         element.addClass("text-danger");
                     } else {
                         element.addClass("text-danger border border-danger");
                     }
+                    
                     error.insertAfter(element);
                 },
                 success: function ( label, element ) {
