@@ -1,5 +1,5 @@
 @component('mail::message')
-#Contato
+<h2>Contato</h2>
 
 __Nome__: {{ $name }}
 
