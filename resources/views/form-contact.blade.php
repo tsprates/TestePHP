@@ -30,7 +30,7 @@
             @endif
             
             @if(Session::has('status'))
-                <div class="alert alert-success">{{ Session::get('status') }}</div>
+                <div class="alert alert-success"><i class="fas fa-check"></i> {{ Session::get('status') }}</div>
             @endif
             
             <form id="contact" method="post" action="/store" enctype="multipart/form-data">
