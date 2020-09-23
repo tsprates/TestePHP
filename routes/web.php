@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\ContactController@index');
 
 Route::post('/store', 'App\Http\Controllers\ContactController@store');
+
+Route::get('/list', 'App\Http\Controllers\ContactController@list');

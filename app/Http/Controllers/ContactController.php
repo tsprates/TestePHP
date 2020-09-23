@@ -59,4 +59,12 @@ class ContactController extends Controller
             Log::error(sprintf("Erro ao enviar email: %s.", $e->getMessage()));
         }
     }
+
+    public function list()
+    {
+        return view(
+            'list-contact', 
+            ['contacts' => Contact::all()]
+        );
+    }
 }
