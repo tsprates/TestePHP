@@ -1,21 +1,16 @@
 @component('mail::message')
-<h4>Contato</h4>
-<hr />
-<div>
-<strong>Nome</strong>: {{ $name }}
-</div>
-<div>
-<strong>Email</strong>: {{ $email }}
-</div>
-<div>
-<strong>Telefone</strong>: {{ $phone }}
-</div>
-<div>
-<strong>Messagem</strong>: {{ $message }}
-</div>
-<div>
-<strong>IP</strong>: {{ $ip }}
-</div>
+#Contato
+
+__Nome__: {{ $name }}
+
+__Email__: {{ $email }}
+
+__Telefone__: {{ $phone }}
+
+__Messagem__: {{ $message }}
+
+__IP__: {{ $ip }}
+
 @component('mail::button', ['url' => asset($attachment)])
 Anexo
 @endcomponent
