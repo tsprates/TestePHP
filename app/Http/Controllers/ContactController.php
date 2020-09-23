@@ -24,7 +24,8 @@ class ContactController extends Controller
      */
     public function store(ContactStoreRequest $request)
     {
-        $data    = $request->validated();
+        $data = $request->validated();
+        
         $contact = [
             'name'    => $data['name'],
             'email'   => $data['email'],
@@ -38,7 +39,8 @@ class ContactController extends Controller
 
         Contact::create($contact);
 
-        $request->session()->flash('status', 'Contato salvo com sucesso!');
+        $request->session()
+            ->flash('status', 'Contato salvo com sucesso!');
 
         return redirect()->back();
     }
@@ -60,6 +62,11 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * List the contacts.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function list()
     {
         return view(
