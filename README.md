@@ -15,22 +15,22 @@ Uma versão funcional se encontra em: [Teste PHP](http://tsprates.com)
 
 ### Instalação:
 
-* Para __instalação dos pacotes PHP__:
+* Para __instalação dos pacotes PHP__ necessários para o projeto utilize o seguinte comando:
 
 ```
 composer install
 ```
 
-* Criação do `APP_KEY` necessário para o Laravel. *Observação*: o arquivo `.env` é criado a partir do arquivo `.env.backup` após a instalação do passo anterior.
+* Para a criação do `APP_KEY`, necessário para o Laravel digite o seguinte comando. __Observação__: o arquivo `.env` é criado a partir do arquivo `.env.backup` após a execução do passo anterior.
 
 ```
 php artisan key:generate
 ```
 
-* Para criação/migração das __tabelas do banco de dados__:
+* Para criação/migração das __tabelas do banco de dados__ utilize o comando abaixo:
 
 ```
 php artisan migrate
 ```
 
-* Para configuração do __servidor de email__ utilizar o arquivo `.env` e utilize a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro.
+* Finalmente, para configuração do __servidor de email__ utilizar o arquivo `.env` e configure a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro do contato.
