@@ -84,7 +84,7 @@
     @keyframes spinner {
         to {transform: rotate(360deg);}
     }
-    .fa-spinner { animation: spinner 1.2s linear infinite; }
+    .fa-sync { animation: spinner 1.4s linear infinite; }
     </style>
     <script>
         $(document).ready(function () {
@@ -154,7 +154,7 @@
                     $('button[type="submit"]')
                         .addClass('btn-disabled')
                         .attr('disabled', 'disabled')
-                        .html('<i class="fas fa-spinner"></i> Enviando...');
+                        .html('<i class="fas fa-sync"></i> Enviando...');
                     
                     form.submit();
                 }
