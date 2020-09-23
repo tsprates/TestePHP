@@ -58,7 +58,7 @@
                     
                     <div class="form-group row">
                         <label for="attachment">Arquivo anexo:</label>
-                        <input type="file" class="form-control-file btn btn" id="attachment" name="attachment" />
+                        <input type="file" class="form-control-file" id="attachment" name="attachment" />
                     </div>
     
                     <div class="form-group py-3 row">
