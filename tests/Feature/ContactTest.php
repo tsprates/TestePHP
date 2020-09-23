@@ -80,8 +80,8 @@ class ContactTest extends TestCase
     
     public function testSendContactFormWithNoErrors()
     {
-        Storage::fake('avatars');
-                
+        Storage::fake('fakefs');
+
         $file = UploadedFile::fake()->create('test.pdf');
 
         $data = $this->getTestData();
