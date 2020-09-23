@@ -80,6 +80,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+    <style type="text/css">
+    @keyframes spinner {
+        to {transform: rotate(360deg);}
+    }
+    .fa-spinner { animation: spinner 1.2s linear infinite; }
+    </style>
     <script>
         $(document).ready(function () {
             $.validator.addMethod("validphone", function (value, element, param) {
@@ -143,6 +149,14 @@
                 },
                 success: function (label, element) {
                     $(element).removeClass("text-danger border border-danger");
+                },
+                submitHandler: function(form) {
+                    $('button[type="submit"]')
+                        .addClass('btn-disabled')
+                        .attr('disabled', 'disabled')
+                        .html('<i class="fas fa-spinner"></i> Enviando...');
+                    
+                    form.submit();
                 }
             });
         });
