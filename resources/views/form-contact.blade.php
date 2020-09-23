@@ -14,6 +14,10 @@
     <body>
     <div class="container">
         <div class="col-md-12">
+            <div class="text-right">
+                <a href="/list" class="text-muted">Lista de contatos</a>
+            </div>
+            
             <div class="pt-2 pb-5 text-center">
                 <h2>Teste <i class="fab fa-php fa-2x"></i></h2>
                 <p>Resolução do teste proposto.</p>
@@ -78,15 +82,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
-            $.validator.addMethod("validphone", function ( value, element, param ) {
+            $.validator.addMethod("validphone", function (value, element, param) {
                 return this.optional(element) || (/^\(\d{2}\) \d{5}-\d{4}$/).test(value);
             });
 
-            $.validator.addMethod('filesize', function(value, element, param) {
+            $.validator.addMethod('filesize', function (value, element, param) {
                 return this.optional(element) || element.files[0].size <= param;
             });
             
-            $.validator.addMethod('extension', function(value, element, param) {
+            $.validator.addMethod('extension', function (value, element, param) {
                 return this.optional(element) || !(/^(pdf|docx?|odt|txt)$/i).test(value);
             });
 
@@ -106,7 +110,7 @@
                     message: "required",
                     attachment: {
                         required: true,
-                        filesize: 524288,
+                        filesize: 500000,
                         extension: true
                     }
                 },
@@ -128,19 +132,17 @@
                     }
                 },
                 errorElement: "em",
-                errorPlacement: function ( error, element ) {
-                    error.addClass("text-danger").prepend('<i class="fas fa-exclamation-circle"></i> ');
-                    
-                    if (element.prop( "type" ) === "file") {
+                errorPlacement: function (error, element) {
+                    error.addClass("text-danger");
+                    if (element.prop("type") === "file") {
                         element.addClass("text-danger");
                     } else {
                         element.addClass("text-danger border border-danger");
                     }
-                    
                     error.insertAfter(element);
                 },
-                success: function ( label, element ) {
-                    $( element ).removeClass("text-danger border border-danger");
+                success: function (label, element) {
+                    $(element).removeClass("text-danger border border-danger");
                 }
             });
         });

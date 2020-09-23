@@ -13,7 +13,7 @@
     </head>
     <body>
     <div class="container">
-        <div class="col-md-12">
+        <div class="col-md-12">            
             <div class="pt-2 pb-5 text-center">
                 <h2>Teste <i class="fab fa-php fa-2x"></i></h2>
                 <p>Resolução do teste proposto.</p>
@@ -23,23 +23,29 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="card-text">
-                        <h3><i class="fas fa-user"></i> {{ $contact->name }}</h3>
+                        <h3 class="text-uppercase text-monospace font-weight-bold">
+                            {{ $contact->name }}
+                        </h3>
                         <hr />
+                        
                         <p>
-                            <i class="fas fa-at"></i> <strong>Email</strong>: <span class="text-muted">{{ $contact->email }}</span>
+                            <strong>Email</strong>: <span class="text-muted">{{ $contact->email }}</span>
                         </p>
+                        
                         <p>
-                            <i class="fas fa-phone"></i> <strong>Telefone</strong>: <span class="text-muted">{{ $contact->phone }}</span>
+                            <strong>Telefone</strong>: <span class="text-muted">{{ $contact->phone }}</span>
                         </p>
+                        
                         <p>
-                            <i class="far fa-envelope"></i> <strong>Messagem</strong>: <span class="text-muted">{{ $contact->message }}</span>
+                            <strong>Messagem</strong>: <em class="text-muted font-italic">{{ $contact->message }}</em>
                         </p>
                     </div>
+                    
                     <a href="{{ asset($contact->attachment) }}" class="btn btn-primary float-right"><i class="fas fa-paperclip"></i> Ver anexo</a>
                 </div>
             </div>
             @endforeach
-            
+        </div>  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
