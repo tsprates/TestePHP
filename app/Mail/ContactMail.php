@@ -20,7 +20,7 @@ class ContactMail extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param array $data
+     * @param  array $data
      * @return void
      */
     public function __construct(array $data)
@@ -36,7 +36,7 @@ class ContactMail extends Mailable
     public function build()
     {
         return $this->markdown('mail-contact')
-            ->from('tsprates@hotmail.com')
+            ->from(env('MAIL_FROM_ADDRESS', 'tsprates@hotmail.com'))
             ->with($this->data);
     }
 }
