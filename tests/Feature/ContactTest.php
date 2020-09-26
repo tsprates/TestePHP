@@ -12,6 +12,11 @@ class ContactTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * Fake data for the tests.
+     *
+     * @return array
+     */
     private function getTestData()
     {
         return [
@@ -22,6 +27,11 @@ class ContactTest extends TestCase
         ];
     }
 
+    /**
+     * Tests accessing index.
+     *
+     * @return void
+     */
     public function testAccessingIndex()
     {
         $response = $this->get('/');
@@ -29,6 +39,11 @@ class ContactTest extends TestCase
         $response->assertStatus(200);
     }
     
+    /**
+     * Tests empty contact form.
+     *
+     * @return void
+     */
     public function testSendEmptyContactForm()
     {
         $response = $this->post('/store', []);
@@ -36,6 +51,11 @@ class ContactTest extends TestCase
         $response->assertSessionHasErrors(['name', 'email', 'phone', 'message', 'attachment']);
     }
     
+    /**
+     * Tests the sent contact form with unformatted phone field.
+     *
+     * @return void
+     */
     public function testSendContactFormWithUnformattedPhone()
     {
         $data = $this->getTestData();
@@ -46,6 +66,11 @@ class ContactTest extends TestCase
         $response->assertSessionHasErrors('phone');
     }
     
+    /**
+     * Tests the sent contact form with invalid email field.
+     *
+     * @return void
+     */
     public function testSendContactFormWithInvalidEmail()
     {
         $data = $this->getTestData();
@@ -53,10 +78,16 @@ class ContactTest extends TestCase
 
         $response = $this->post('/store', $data);
         
-        $response->assertSessionHasErrors(['email']);
+        $response->assertSessionHasErrors('email');
     }
-    
-    public function testSendContactFormExcedingFileSize()
+
+    /**
+     * Tests the sent contact form with exceeded limit file size
+     * in the attachement field.
+     *
+     * @return void
+     */
+    public function testSendContactFormExcedingFileSizeAttached()
     {
         $file = UploadedFile::fake()->create('test.pdf', 999999);
         
@@ -68,10 +99,16 @@ class ContactTest extends TestCase
         $response->assertSessionHasErrors('attachment');
     }
     
+    /**
+     * Tests the sent contact form with file extension not allowed
+     * in the attachement field.
+     *
+     * @return void
+     */
     public function testSendContactWithInvalidFileExtension()
     {
         $file = UploadedFile::fake()->create('test.png');
-
+        
         $data = $this->getTestData();
         $data['attachment'] = $file;
 
@@ -80,11 +117,17 @@ class ContactTest extends TestCase
         $response->assertSessionHasErrors('attachment');
     }
     
+     /**
+     * Tests the sent contact form with no errors.
+     *
+     * @return void
+     */
     public function testSendContactFormWithNoErrors()
     {
         Storage::fake('fakefs');
         
         $file = UploadedFile::fake()->create('test.pdf');
+        
         $data = $this->getTestData();
         $data['attachment'] = $file;
 
