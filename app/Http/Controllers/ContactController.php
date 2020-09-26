@@ -11,8 +11,13 @@ use App\Http\Requests\ContactStoreRequest;
 
 class ContactController extends Controller
 {
-    public function index() 
-    { 
+    /**
+     * The form contact.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         return view('form-contact');
     }
     
@@ -24,8 +29,7 @@ class ContactController extends Controller
      */
     public function store(ContactStoreRequest $request)
     {
-        $data = $request->validated();
-        
+        $data    = $request->validated();
         $contact = [
             'name'    => $data['name'],
             'email'   => $data['email'],
@@ -35,9 +39,11 @@ class ContactController extends Controller
             'attachment' => 'storage/attachments/' . basename($request->attachment->store('public/attachments')),
         ];
         
-        $this->sendContactMail($contact);
-
+        // save the contact
         Contact::create($contact);
+        
+        // sends the successful message
+        $this->sendContactMail($contact);
 
         $request->session()
             ->flash('status', 'Contato salvo com sucesso!');
@@ -47,10 +53,10 @@ class ContactController extends Controller
 
     /**
      * Sends the mail about the saved contact.
-     * 
+     *
      * @param array $contact
      */
-    private function sendContactMail(array $contact) 
+    private function sendContactMail(array $contact)
     {
         try {
             Mail::to($contact['email'])
@@ -70,7 +76,7 @@ class ContactController extends Controller
     public function list()
     {
         return view(
-            'list-contact', 
+            'list-contact',
             ['contacts' => Contact::all()]
         );
     }
