@@ -33,11 +33,7 @@ class ContactTest extends TestCase
     {
         $response = $this->post('/store', []);
         
-        $response->assertSessionHasErrors(
-            [
-                'name', 'email', 'phone', 'message', 'attachment'
-            ]
-        );
+        $response->assertSessionHasErrors(['name', 'email', 'phone', 'message', 'attachment']);
     }
     
     public function testSendContactFormWithUnformattedPhone()
@@ -47,11 +43,17 @@ class ContactTest extends TestCase
 
         $response = $this->post('/store', $data);
         
-        $response->assertSessionHasErrors(
-            [
-                'phone'
-            ]
-        );
+        $response->assertSessionHasErrors('phone');
+    }
+    
+    public function testSendContactFormWithInvalidEmail()
+    {
+        $data = $this->getTestData();
+        $data['email'] = 'test';
+
+        $response = $this->post('/store', $data);
+        
+        $response->assertSessionHasErrors(['email']);
     }
     
     public function testSendContactFormExcedingFileSize()
@@ -81,9 +83,8 @@ class ContactTest extends TestCase
     public function testSendContactFormWithNoErrors()
     {
         Storage::fake('fakefs');
-
+        
         $file = UploadedFile::fake()->create('test.pdf');
-
         $data = $this->getTestData();
         $data['attachment'] = $file;
 
