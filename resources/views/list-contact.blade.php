@@ -13,7 +13,11 @@
     </head>
     <body>
     <div class="container">
-        <div class="col-md-12">            
+        <div class="col-md-12">
+            <div>
+                <a href="/" class="text-muted"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </div>         
+            
             <div class="pt-2 pb-5 text-center">
                 <h2>Teste <i class="fab fa-php fa-2x"></i></h2>
                 <p>Resolução do teste proposto.</p>
