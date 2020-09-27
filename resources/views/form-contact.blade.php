@@ -15,7 +15,7 @@
     <div class="container">
         <div class="col-md-12">
             <div class="text-right">
-                <a href="/list" class="text-muted">Lista de contatos</a>
+                <a href="/list" class="text-muted"><i class="fas fa-list"></i> Lista de contatos</a>
             </div>
             
             <div class="pt-2 pb-5 text-center">
