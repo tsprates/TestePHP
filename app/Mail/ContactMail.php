@@ -38,7 +38,7 @@ class ContactMail extends Mailable
     public function build()
     {
         return $this->markdown('mail-contact')
-            ->from(env('MAIL_FROM_ADDRESS', 'tsprates@hotmail.com'))
+            ->from($this->data['email'])
             ->subject('Teste PHP')
             ->with($this->data);
     }

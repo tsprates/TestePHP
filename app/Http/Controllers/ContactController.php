@@ -59,7 +59,7 @@ class ContactController extends Controller
     private function sendContactMail(array $contact)
     {
         try {
-            Mail::to($contact['email'])
+            Mail::to(env('MAIL_FROM_ADDRESS'))
                 ->send(new ContactMail($contact));
         } catch (\Exception $e) {
             Log::error(sprintf("Erro ao enviar email: %s.", $e->getMessage()));
