@@ -39,10 +39,9 @@ class ContactController extends Controller
             'attachment' => 'storage/attachments/' . basename($request->attachment->store('public/attachments')),
         ];
         
-        // save the contact
         Contact::create($contact);
         
-        // sends the successful message
+        // sends the success message
         $this->sendContactMail($contact);
 
         $request->session()
