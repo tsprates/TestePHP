@@ -35,12 +35,7 @@ class ContactStoreRequest extends FormRequest
                 }
             ],
             'message'    => 'required',
-            'attachment' => [
-                'required',
-                'mimes:pdf,doc,docx,odt,txt',
-                'file',
-                'max:500',
-            ]
+            'attachment' => 'required|file|mimes:pdf,doc,docx,odt,txt|max:500',
         ];
     }
 
