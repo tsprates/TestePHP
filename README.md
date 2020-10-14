@@ -21,7 +21,8 @@ Uma versão funcional se encontra em: [Teste PHP](http://tsprates.com)
 composer install
 ```
 
-* Para a criação do `APP_KEY`, necessário para o Laravel digite o seguinte comando. __Observação__: o arquivo `.env` é criado a partir do arquivo `.env.backup` após a execução do passo anterior.
+* Para a criação do `APP_KEY`, necessário para o Laravel digite o seguinte comando. 
+> __Observação__: o arquivo `.env` é criado a partir do arquivo `.env.backup` após a execução do passo anterior.
 
 ```
 php artisan key:generate
