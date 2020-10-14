@@ -33,4 +33,4 @@ php artisan key:generate
 php artisan migrate
 ```
 
-* Finalmente, para configuração do __servidor de email__ utilizar o arquivo `.env` e configure a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro do contato.
+* Finalmente, para configuração do __servidor de email__ utilizar o arquivo `.env`. Utilize a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro.
