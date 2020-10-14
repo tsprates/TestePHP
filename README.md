@@ -15,7 +15,7 @@ Uma versão funcional se encontra em: [Teste PHP](http://tsprates.com)
 
 ### Instalação:
 
-* Para __instalação dos pacotes PHP__ necessários para o projeto utilize o seguinte comando:
+* Para __instalação dos pacotes PHP necessários__. Utilize o seguinte comando:
 
 ```
 composer install
@@ -27,10 +27,16 @@ composer install
 php artisan key:generate
 ```
 
-* Para criação/migração das __tabelas do banco de dados__ utilize o comando abaixo:
+* Para criação/migração das __tabelas do banco de dados__:
 
 ```
 php artisan migrate
 ```
 
-* Finalmente, para configuração do __servidor de email__ utilizar o arquivo `.env`. Utilize a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro.
+* Para criação dos links para os arquivos anexados:
+
+```
+php artisan storage:link
+```
+
+* Por fim, para configuração do __servidor de email__ utilizar o arquivo `.env`. Utilize a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro.
