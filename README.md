@@ -1,9 +1,5 @@
 # Teste PHP
 
-### Versão de teste:
-
-Uma versão funcional se encontra em: [Teste PHP](http://tsprates.com)
-
 ### Requisitos:
 
 * __PHP 7.4__
