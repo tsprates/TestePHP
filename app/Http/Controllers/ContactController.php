@@ -29,13 +29,14 @@ class ContactController extends Controller
      */
     public function store(ContactStoreRequest $request)
     {
-        $data    = $request->validated();
+        $data = $request->validated();
+        
         $contact = [
-            'name'    => $data['name'],
-            'email'   => $data['email'],
-            'phone'   => $data['phone'],
-            'message' => $data['message'],
-            'ip'      => $request->ip(),
+            'name'       => $data['name'],
+            'email'      => $data['email'],
+            'phone'      => $data['phone'],
+            'message'    => $data['message'],
+            'ip'         => $request->ip(),
             'attachment' => 'storage/attachments/' . basename($request->attachment->store('public/attachments')),
         ];
         
