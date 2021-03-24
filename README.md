@@ -13,26 +13,26 @@
 
 * Instalação dos __pacotes PHP__ necessários:
 
-```
+```sh
 composer install
 ```
 
 * Criação do `APP_KEY`: 
 
-```
+```sh
 php artisan key:generate
 ```
 
 * Criação/migração das __tabelas do banco de dados__:
 
-```
+```sh
 php artisan migrate
 ```
 
 * Criação dos _links_ para os arquivos anexados (_uploads_):
 
-```
+```sh
 php artisan storage:link
 ```
 
-> Para configurar do __servidor de email__ é necessário configurar a variável de ambiente `MAIL_FROM_ADDRESS` dentro de `.env`.
+> Para configurar o __servidor de email__ é necessário configurar a variável de ambiente `MAIL_FROM_ADDRESS` dentro de `.env`.
