@@ -11,29 +11,28 @@
 
 ### Instalação:
 
-* Para __instalação dos pacotes PHP necessários__. Utilize o seguinte comando:
+* Instalação dos __pacotes PHP__ necessários:
 
 ```
 composer install
 ```
 
-* Para a criação do `APP_KEY`, necessário para o Laravel digite o seguinte comando. 
-> __Observação__: o arquivo `.env` é criado a partir do arquivo `.env.backup` após a execução do passo anterior.
+* Criação do `APP_KEY`: 
 
 ```
 php artisan key:generate
 ```
 
-* Para criação/migração das __tabelas do banco de dados__:
+* Criação/migração das __tabelas do banco de dados__:
 
 ```
 php artisan migrate
 ```
 
-* Para criação dos links para os arquivos anexados:
+* Criação dos _links_ para os arquivos anexados (_uploads_):
 
 ```
 php artisan storage:link
 ```
 
-* Por fim, para configuração do __servidor de email__ utilizar o arquivo `.env`. Utilize a variável `MAIL_FROM_ADDRESS` para envio de email após a realização de cadastro.
+> Para configurar do __servidor de email__ é necessário configurar a variável de ambiente `MAIL_FROM_ADDRESS` dentro de `.env`.
