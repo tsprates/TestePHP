@@ -20,7 +20,7 @@ class ContactController extends Controller
     {
         return view('form-contact');
     }
-    
+
     /**
      * Stores the contact data.
      *
@@ -30,7 +30,7 @@ class ContactController extends Controller
     public function store(ContactStoreRequest $request)
     {
         $data = $request->validated();
-        
+
         $contact = [
             'name'       => $data['name'],
             'email'      => $data['email'],
@@ -39,9 +39,9 @@ class ContactController extends Controller
             'ip'         => $request->ip(),
             'attachment' => 'storage/attachments/' . basename($request->attachment->store('public/attachments')),
         ];
-        
+
         Contact::create($contact);
-        
+
         // sends the success message
         $this->sendContactMail($contact);
 
