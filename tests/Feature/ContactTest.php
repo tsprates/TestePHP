@@ -122,6 +122,6 @@ class ContactTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertSee('Contato salvo com sucesso!');
 
-        Mail::assertSent(ContactMail::class, 1);
+        Mail::assertSent(ContactMail::class);
     }
 }
