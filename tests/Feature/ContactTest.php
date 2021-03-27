@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Mail\ContactMail;
 use App\Models\Contact;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 
 class ContactTest extends TestCase
 {
@@ -108,6 +110,7 @@ class ContactTest extends TestCase
     public function testSendContactFormWithNoErrors()
     {
         Storage::fake('fakefs');
+        Mail::fake();
 
         $file = UploadedFile::fake()->create('test.pdf');
 
@@ -118,5 +121,7 @@ class ContactTest extends TestCase
             ->post('/store', $data->toArray())
             ->assertSessionHasNoErrors()
             ->assertSee('Contato salvo com sucesso!');
+
+        Mail::assertSent(ContactMail::class, 1);
     }
 }
