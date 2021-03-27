@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Contact;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -13,32 +14,16 @@ class ContactTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Fake data for the tests.
-     *
-     * @return array
-     */
-    private function getTestData()
-    {
-        return [
-            'name'    => 'Test User',
-            'phone'   => '(11) 11111-1111',
-            'email'   => 'test@test.com',
-            'message' => 'Test message',
-        ];
-    }
-
-    /**
      * Tests accessing index.
      *
      * @return void
      */
     public function testAccessingIndex()
     {
-        $response = $this->get('/');
-        
-        $response->assertStatus(200);
+        $this->get('/')
+            ->assertStatus(200);
     }
-    
+
     /**
      * Tests empty contact form.
      *
@@ -47,10 +32,12 @@ class ContactTest extends TestCase
     public function testSendEmptyContactForm()
     {
         $response = $this->post('/store', []);
-        
-        $response->assertSessionHasErrors(['name', 'email', 'phone', 'message', 'attachment']);
+
+        $response->assertSessionHasErrors([
+            'name', 'email', 'phone', 'message', 'attachment'
+        ]);
     }
-    
+
     /**
      * Tests the sent contact form with unformatted phone field.
      *
@@ -58,14 +45,13 @@ class ContactTest extends TestCase
      */
     public function testSendContactFormWithUnformattedPhone()
     {
-        $data = $this->getTestData();
+        $data = Contact::factory()->create();
         $data['phone'] = 'none';
 
-        $response = $this->post('/store', $data);
-        
-        $response->assertSessionHasErrors('phone');
+        $this->post('/store', $data->toArray())
+            ->assertSessionHasErrors('phone');
     }
-    
+
     /**
      * Tests the sent contact form with invalid email field.
      *
@@ -73,12 +59,11 @@ class ContactTest extends TestCase
      */
     public function testSendContactFormWithInvalidEmail()
     {
-        $data = $this->getTestData();
+        $data = Contact::factory()->create();
         $data['email'] = 'test';
 
-        $response = $this->post('/store', $data);
-        
-        $response->assertSessionHasErrors('email');
+        $this->post('/store', $data->toArray())
+            ->assertSessionHasErrors('email');
     }
 
     /**
@@ -89,16 +74,14 @@ class ContactTest extends TestCase
      */
     public function testSendContactFormExcedingFileSizeAttached()
     {
+        $data = Contact::factory()->create();
         $file = UploadedFile::fake()->create('test.pdf', 999999);
-        
-        $data = $this->getTestData();
         $data['attachment'] = $file;
 
-        $response = $this->post('/store', $data);
-
-        $response->assertSessionHasErrors('attachment');
+        $this->post('/store', $data->toArray())
+            ->assertSessionHasErrors('attachment');
     }
-    
+
     /**
      * Tests the sent contact form with file extension not allowed
      * in the attachement field.
@@ -107,34 +90,28 @@ class ContactTest extends TestCase
      */
     public function testSendContactWithInvalidFileExtension()
     {
+        $data = Contact::factory()->create();
         $file = UploadedFile::fake()->create('test.png');
-        
-        $data = $this->getTestData();
         $data['attachment'] = $file;
 
-        $response = $this->post('/store', $data);
-
-        $response->assertSessionHasErrors('attachment');
+        $this->post('/store', $data->toArray())
+            ->assertSessionHasErrors('attachment');
     }
-    
-     /**
-     * Tests the sent contact form with no errors.
-     *
-     * @return void
-     */
+
+    /**
+    * Tests the sent contact form with no errors.
+    *
+    * @return void
+    */
     public function testSendContactFormWithNoErrors()
     {
         Storage::fake('fakefs');
-        
+
+        $data = Contact::factory()->create();
         $file = UploadedFile::fake()->create('test.pdf');
-        
-        $data = $this->getTestData();
         $data['attachment'] = $file;
 
-        $response = $this->post('/store', $data);
-
-        $response->assertSessionHasNoErrors();
-        
-        $this->assertDatabaseCount('contacts', 1);
+        $this->post('/store', $data->toArray())
+            ->assertSessionHasNoErrors();
     }
 }
