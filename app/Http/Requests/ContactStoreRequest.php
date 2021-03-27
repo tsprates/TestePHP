@@ -29,7 +29,7 @@ class ContactStoreRequest extends FormRequest
             'phone'     => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    if (! preg_match("/^\(\d{2}\) \d{5}-\d{4}$/", $value)) {
+                    if (! preg_match("/^\(\d{2}\) \d{4,5}-\d{4}$/", $value)) {
                         $fail('O campo telefone é inválido (xx) xxxxx-xxxx.');
                     }
                 }
