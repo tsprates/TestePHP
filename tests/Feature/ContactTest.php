@@ -74,8 +74,9 @@ class ContactTest extends TestCase
      */
     public function testSendContactFormExcedingFileSizeAttached()
     {
-        $data = Contact::factory()->create();
         $file = UploadedFile::fake()->create('test.pdf', 999999);
+
+        $data = Contact::factory()->create();
         $data['attachment'] = $file;
 
         $this->post('/store', $data->toArray())
@@ -90,8 +91,9 @@ class ContactTest extends TestCase
      */
     public function testSendContactWithInvalidFileExtension()
     {
-        $data = Contact::factory()->create();
         $file = UploadedFile::fake()->create('test.png');
+
+        $data = Contact::factory()->create();
         $data['attachment'] = $file;
 
         $this->post('/store', $data->toArray())
@@ -107,11 +109,14 @@ class ContactTest extends TestCase
     {
         Storage::fake('fakefs');
 
-        $data = Contact::factory()->create();
         $file = UploadedFile::fake()->create('test.pdf');
+
+        $data = Contact::factory()->create();
         $data['attachment'] = $file;
 
-        $this->post('/store', $data->toArray())
-            ->assertSessionHasNoErrors();
+        $this->followingRedirects()
+            ->post('/store', $data->toArray())
+            ->assertSessionHasNoErrors()
+            ->assertSee('Contato salvo com sucesso!');
     }
 }
