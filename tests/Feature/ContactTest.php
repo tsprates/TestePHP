@@ -16,22 +16,11 @@ class ContactTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Tests accessing index.
-     *
-     * @return void
-     */
-    public function testAccessingIndex()
-    {
-        $this->get('/')
-            ->assertStatus(200);
-    }
-
-    /**
      * Tests empty contact form.
      *
      * @return void
      */
-    public function testSendEmptyContactForm()
+    public function testSubmitEmptyContactForm()
     {
         $response = $this->post('/store', []);
 
@@ -45,10 +34,9 @@ class ContactTest extends TestCase
      *
      * @return void
      */
-    public function testSendContactFormWithUnformattedPhone()
+    public function testSubmitContactFormWithUnformattedPhone()
     {
-        $data = Contact::factory()->create();
-        $data['phone'] = 'none';
+        $data = Contact::factory()->create(['phone' => 'none']);
 
         $this->post('/store', $data->toArray())
             ->assertSessionHasErrors('phone');
@@ -59,10 +47,9 @@ class ContactTest extends TestCase
      *
      * @return void
      */
-    public function testSendContactFormWithInvalidEmail()
+    public function testSubmitContactFormWithInvalidEmail()
     {
-        $data = Contact::factory()->create();
-        $data['email'] = 'test';
+        $data = Contact::factory()->create(['email' => 'test']);
 
         $this->post('/store', $data->toArray())
             ->assertSessionHasErrors('email');
@@ -74,12 +61,11 @@ class ContactTest extends TestCase
      *
      * @return void
      */
-    public function testSendContactFormExcedingFileSizeAttached()
+    public function testSubmitContactFormExcedingFileSizeAttached()
     {
         $file = UploadedFile::fake()->create('test.pdf', 999999);
 
-        $data = Contact::factory()->create();
-        $data['attachment'] = $file;
+        $data = Contact::factory()->create(['attachment' => $file]);
 
         $this->post('/store', $data->toArray())
             ->assertSessionHasErrors('attachment');
@@ -91,12 +77,11 @@ class ContactTest extends TestCase
      *
      * @return void
      */
-    public function testSendContactWithInvalidFileExtension()
+    public function testSubmitContactWithInvalidFileExtension()
     {
         $file = UploadedFile::fake()->create('test.png');
 
-        $data = Contact::factory()->create();
-        $data['attachment'] = $file;
+        $data = Contact::factory()->create(['attachment' => $file]);
 
         $this->post('/store', $data->toArray())
             ->assertSessionHasErrors('attachment');
@@ -107,15 +92,14 @@ class ContactTest extends TestCase
     *
     * @return void
     */
-    public function testSendContactFormWithNoErrors()
+    public function testSubmitContactFormWithNoErrors()
     {
         Storage::fake('fakefs');
         Mail::fake();
 
         $file = UploadedFile::fake()->create('test.pdf');
 
-        $data = Contact::factory()->create();
-        $data['attachment'] = $file;
+        $data = Contact::factory()->create(['attachment' => $file]);
 
         $this->followingRedirects()
             ->post('/store', $data->toArray())
