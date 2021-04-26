@@ -29,7 +29,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-* Criação dos _links_ para os arquivos anexados (_uploads_):
+* Criação dos _links_ para os __arquivos anexados (_uploads_)__:
 
 ```sh
 php artisan storage:link
