@@ -1,6 +1,10 @@
-# Teste PHP
+# Teste de PHP
 
-### Requisitos:
+## Contato
+
+[LinkedIn](https://www.linkedin.com/in/tsprates/)
+
+## Requisitos:
 
 * __PHP 7.4__
 * __Laravel 8.0__
@@ -9,7 +13,7 @@
 * __jQuery Validation 1.19.2__
 * __jQuery Input Mask 1.14.16__
 
-### Instalação:
+## Instalação:
 
 * Instalação dos __pacotes PHP__ necessários:
 
