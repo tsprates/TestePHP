@@ -40,6 +40,6 @@ php artisan storage:link
 
 ## Contato
 
-[LinkedIn](https://www.linkedin.com/in/tsprates/)
-[GitHub](https://www.github.com/tsprates/)
+* [LinkedIn](https://www.linkedin.com/in/tsprates/)
+* [GitHub](https://www.github.com/tsprates/)
 
